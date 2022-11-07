@@ -53,7 +53,7 @@ const createWindow = () => {
 
     window.loadURL(
         isDev
-            ? 'http://localhost:32321'
+            ? 'http://localhost:2500'
             : url.format({
                   pathname: path.join(__dirname, 'index.html'),
                   protocol: 'file:',
