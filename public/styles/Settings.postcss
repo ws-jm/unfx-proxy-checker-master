@@ -1,0 +1,444 @@
+.settings {
+    & .react-tabs__tab-list {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 2em;
+
+        & li {
+            display: inline-block;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.5em 1.25em;
+            margin-right: 1em;
+            transition: color 0.3s easeOne, background-color 0.3s easeOne;
+            outline: none;
+            border-radius: 1.75em;
+            background-color: color(var(--green-color) alpha(25%));
+            color: color(var(--green-color) alpha(65%));
+
+            &:not(.react-tabs__tab--selected):hover {
+                color: var(--white-color);
+                background-color: color(var(--green-color) alpha(75%));
+            }
+        }
+
+        & .react-tabs__tab--selected {
+            color: var(--white-color);
+            background-color: color(var(--green-color) alpha(85%));
+        }
+    }
+
+    & .react-tabs__tab-panel {
+        margin-right: -2em;
+    }
+
+    & .judges-list {
+        background-image: linear-gradient(to right, color(var(--green-color) alpha(25%)), color(var(--blue-color) alpha(25%)));
+        border-radius: 0.35em;
+        overflow: hidden;
+
+        & .items {
+            max-height: 250px;
+            overflow: auto;
+            padding: 1em;
+
+            &:empty {
+                padding: 0em;
+                position: relative;
+
+                &::after {
+                    content: 'No items';
+                    display: flex;
+                    font-weight: 700;
+                    justify-content: center;
+                    color: var(--white-color);
+                    background-color: color(var(--green-color) alpha(35%));
+                    padding: 1em;
+                    border-radius: 0.35em;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            & .item {
+                margin-bottom: 1em;
+                padding-bottom: 1em;
+                border-bottom: 1px solid color(var(--white-color) alpha(35%));
+
+                &:last-child {
+                    margin-bottom: 0;
+                    border-bottom: none;
+                    padding-bottom: 0em;
+                }
+
+                &:hover {
+                    & svg.close-svg {
+                        opacity: 1 !important;
+                    }
+                }
+
+                & .title-remove {
+                    display: flex;
+                    flex-flow: row nowrap;
+
+                    & label {
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        padding: 0;
+                        width: calc(100% - 1em);
+                        margin-right: 1em;
+                    }
+
+                    & span:nth-child(2) {
+                        width: calc(100% - 1em);
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+
+                    & svg.close-svg {
+                        margin-left: auto;
+                        fill: color(var(--green-color) alpha(35%));
+                        cursor: pointer;
+                        width: 1em;
+                        height: 1em;
+                        opacity: 0;
+                        transition: fill 0.5s easeOne;
+
+                        &:hover {
+                            fill: color(var(--green-color) alpha(75%));
+                        }
+                    }
+                }
+
+                & input {
+                    margin-top: 1em;
+                }
+            }
+        }
+    }
+
+    & .judges-add-new {
+        display: flex;
+        flex-flow: row nowrap;
+
+        & button {
+            margin-left: 1em !important;
+            margin-right: 0;
+        }
+    }
+
+    & .black-list {
+        overflow: hidden;
+        background-image: linear-gradient(to right, color(var(--green-color) alpha(25%)), color(var(--blue-color) alpha(25%)));
+        border-radius: 0.35em;
+        margin-top: 1em;
+
+        & .items {
+            padding: 1em;
+            max-height: 250px;
+            overflow: auto;
+
+            &:empty {
+                position: relative;
+                padding: 0;
+
+                &::after {
+                    content: 'No items';
+                    display: flex;
+                    font-weight: 700;
+                    justify-content: center;
+                    color: var(--white-color);
+                    background-color: color(var(--green-color) alpha(35%));
+                    padding: 1em;
+                    border-radius: 0.35em;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            & .item {
+                margin-bottom: 1em;
+                padding-bottom: 1em;
+                border-bottom: 1px solid color(var(--white-color) alpha(35%));
+
+                &:last-child {
+                    margin-bottom: 0;
+                    border-bottom: none;
+                    padding-bottom: 0em;
+                }
+
+                &:hover {
+                    & svg.close-svg {
+                        opacity: 1 !important;
+                    }
+                }
+
+                & .title-remove {
+                    width: 100%;
+                    display: flex;
+                    flex-flow: row wrap;
+
+                    & label {
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        padding: 0;
+                        width: calc(100% - 1em);
+                    }
+
+                    & span:nth-child(2) {
+                        width: calc(100% - 2.35em);
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+
+                    & svg.close-svg {
+                        margin-left: auto;
+                        fill: color(var(--green-color) alpha(35%));
+                        cursor: pointer;
+                        width: 1em;
+                        height: 1em;
+                        opacity: 0;
+                        transition: fill 0.5s easeOne;
+
+                        &:hover {
+                            fill: color(var(--green-color) alpha(75%));
+                        }
+                    }
+                }
+
+                & .path {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    margin-top: 1em;
+
+                    & button {
+                        margin-left: 1em;
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    & .blacklist-add-new {
+        margin-top: 1em;
+
+        & .path {
+            display: flex;
+            flex-flow: row nowrap;
+            margin-top: 1em;
+
+            & button {
+                margin-left: 1em;
+                margin-right: 0;
+            }
+        }
+
+        & .blacklist-add-new-button {
+            margin-top: 1em;
+        }
+    }
+
+    & .blocks-row.bottom {
+        margin-bottom: 0.5em;
+
+        & .block {
+            margin-bottom: 0;
+        }
+
+        & .block .content {
+            border: none;
+        }
+    }
+
+    & .block {
+        display: inline-flex;
+        flex-flow: row wrap;
+        margin-bottom: 2em;
+        padding-right: 2em;
+        animation: fade-one 0.7s easeOne;
+
+        &.slider .content {
+            padding-top: 1em;
+        }
+
+        & .sub-block {
+            width: 100%;
+
+            &:not(:first-child) .title {
+                margin-top: 2em;
+            }
+        }
+
+        & .content {
+            display: flex;
+            width: 100%;
+            padding-bottom: 1em;
+            border-bottom: 1px solid var(--white-color-back);
+
+            &.no-bot {
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+
+            &.no-flex {
+                display: block;
+            }
+
+            & button.ip-lookup-button,
+            & button.add-url-button {
+                margin: 0;
+                margin-left: 2em;
+            }
+        }
+
+        & h1:not(:first-child) {
+            margin-top: 2em;
+        }
+
+        &.large {
+            width: 100%;
+        }
+
+        &.middle {
+            width: 50%;
+        }
+
+        &.small {
+            width: 25%;
+        }
+
+        &.third {
+            width: 33.3333333333%;
+        }
+
+        & .title {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85em;
+            font-weight: 100;
+            color: color(var(--green-color) alpha(85%));
+            width: 100%;
+
+            &.space-bot {
+                margin-bottom: 16px;
+            }
+
+            & span.name {
+                background-color: color(var(--grey-color) alpha(5%));
+                padding: 0.25em 0.75em;
+                border-radius: 0.75em;
+            }
+
+            & span.value {
+                padding: 0.25em 0;
+                color: color(var(--grey-color) alpha(65%));
+            }
+        }
+    }
+}
+
+@keyframes fade-one {
+    from {
+        opacity: 0;
+        transform: translateY(10%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-one-close {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(10%);
+    }
+}
+
+.container.dark .settings {
+    & .react-tabs__tab-list {
+        & li {
+            color: color(var(--back-black-color) alpha(85%));
+
+            &:not(.react-tabs__tab--selected):hover {
+                color: color(var(--neo-black-color) alpha(55%));
+            }
+        }
+
+        & .react-tabs__tab--selected {
+            color: var(--grey-color);
+        }
+    }
+
+    & .judges-list .items {
+        &:empty {
+            &::after {
+                color: color(var(--neo-black-color) alpha(90%));
+            }
+        }
+
+        & .item {
+            border-bottom: 1px solid color(var(--white-color) alpha(5%));
+
+            &:last-child {
+                margin-bottom: 0;
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    & .black-list .items {
+        &:empty {
+            &::after {
+                color: color(var(--neo-black-color) alpha(90%));
+            }
+        }
+
+        & .item {
+            border-bottom: 1px solid color(var(--white-color) alpha(5%));
+
+            &:last-child {
+                margin-bottom: 0;
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    & .blocks-row.bottom .block .content {
+        border: none;
+    }
+
+    & .block {
+        & .content {
+            border-bottom: 1px solid color(var(--white-color) alpha(5%));
+
+            &.no-bot {
+                border-bottom: none;
+            }
+        }
+
+        & .title {
+            color: color(var(--green-color) alpha(85%));
+
+            & span.name {
+                background-color: color(#ddd alpha(5%));
+            }
+
+            & span.value {
+                color: color(var(--green-color) alpha(50%));
+            }
+        }
+    }
+}

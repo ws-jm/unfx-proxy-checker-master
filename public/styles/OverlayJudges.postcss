@@ -1,0 +1,190 @@
+.ping-judges-container {
+    position: fixed;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 2em;
+    width: 100%;
+    height: calc(100% - 2em);
+    top: 2em;
+    left: 0;
+    overflow-y: auto;
+    background-color: color(var(--white-color) alpha(95%));
+    transition: opacity 0.7s easeOne, visibility 0.7s easeOne, z-index 0.7s easeOne;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+
+    &.opened {
+        opacity: 1;
+        z-index: 3;
+        visibility: visible;
+
+        & .ping-judges-content {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0%);
+        }
+    }
+
+    & .ping-judges-content {
+        max-width: 960px;
+        width: 100%;
+        opacity: 0;
+        transform: translateY(-10%);
+        transition: opacity 0.7s easeOne, transform 0.7s easeOne;
+
+        & .ping-progress {
+            display: inline-flex;
+            font-size: 1em;
+            font-weight: 700;
+            user-select: none;
+            border-radius: 1.75em;
+            padding: 0.5em 1.75em;
+            border: 1px solid transparent;
+            color: color(var(--grey-color) alpha(75%));
+            background-color: color(var(--grey-color) alpha(15%));
+        }
+
+        & .items {
+            border-top: 1px solid var(--white-color-back);
+            margin-top: 2em;
+        }
+
+        & .item {
+            display: flex;
+            flex-flow: row wrap;
+            padding: 1.15em 0;
+            height: 4em;
+            align-items: center;
+            font-weight: 700;
+            transition: color 0.7s easeOne;
+            color: color(var(--grey-color) alpha(65%));
+            border-bottom: 1px solid var(--white-color-back);
+
+            & svg {
+                width: 1.25em;
+                height: 1.25em;
+                margin-right: 0.75em;
+                fill: color(var(--grey-color) alpha(65%));
+                transition: fill 0.7s easeOne;
+            }
+
+            &.success {
+                color: color(var(--green-color) alpha(65%));
+
+                & svg {
+                    fill: color(var(--green-color) alpha(65%));
+                }
+
+                & .response {
+                    color: var(--white-color);
+                    background-color: color(var(--green-color) alpha(65%));
+                }
+            }
+
+            &.error {
+                color: color(var(--red-color) alpha(65%));
+
+                & svg {
+                    fill: color(var(--red-color) alpha(65%));
+                }
+
+                & .response {
+                    color: var(--white-color);
+                    background-color: color(var(--red-color) alpha(65%));
+                }
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            & .url {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            & .status {
+                margin-left: auto;
+
+                & svg path {
+                    fill: color(var(--grey-color) alpha(65%));
+                }
+
+                & .response {
+                    display: inline-block;
+                    padding: 0.35em 0.75em;
+                    border-radius: 1em;
+                    font-size: 0.85em;
+                    animation: fade-judge-status 0.7s easeOne;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+@keyframes fade-judge-status {
+    from {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container.dark .ping-judges-container {
+    background-color: color(var(--neo-black-color) alpha(95%));
+
+    & .ping-judges-content {
+        & .ping-progress {
+            color: color(#ddd alpha(50%));
+            background-color: color(var(--back-black-color) alpha(35%));
+        }
+
+        & .items {
+            border-top: 1px solid color(var(--white-color) alpha(5%));
+        }
+
+        & .item {
+            color: color(#ddd alpha(50%));
+            border-bottom: 1px solid color(var(--white-color) alpha(5%));
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            & svg {
+                fill: color(#ddd alpha(50%));
+            }
+
+            &.success {
+                color: color(var(--green-color) alpha(65%));
+
+                & svg {
+                    fill: color(var(--green-color) alpha(65%));
+                }
+            }
+
+            &.error {
+                color: color(var(--red-color) alpha(65%));
+
+                & svg {
+                    fill: color(var(--red-color) alpha(65%));
+                }
+            }
+        }
+
+        & .response {
+            color: color(var(--neo-black-color) alpha(85%));
+        }
+
+        & .status svg path {
+            fill: color(#ddd alpha(50%));
+        }
+    }
+}

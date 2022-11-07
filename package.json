@@ -1,0 +1,135 @@
+{
+    "name": "unfx-proxy-checker",
+    "version": "1.7.2",
+    "main": "public/main.js",
+    "license": "MIT",
+    "author": {
+        "name": "Open Proxy Space",
+        "email": "r060773d@openproxy.space",
+        "url": "https://openproxy.space/"
+    },
+    "keywords": [
+        "unfx",
+        "proxy",
+        "checker"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/assnctr/unfx-proxy-checker"
+    },
+    "bugs": {
+        "url": "https://github.com/assnctr/unfx-proxy-checker/issues"
+    },
+    "homepage": "https://openproxy.space/software/proxy-checker",
+    "scripts": {
+        "build": "run-p build:*",
+        "build:main": "cross-env NODE_ENV=production webpack -p --config webpack.config.main.babel.js",
+        "build:renderer": "cross-env NODE_ENV=production webpack -p --config webpack.config.renderer.babel.js",
+        "start": "run-p start:*",
+        "start:main": "electron --require @babel/register src/index",
+        "start:renderer": "cross-env NODE_ENV=development webpack-dev-server -d --config webpack.config.renderer.babel.js",
+        "package": "npm run build && electron-builder --win",
+        "package-linux": "npm run build && electron-builder --linux",
+        "publish": "npm run build && electron-builder --win --publish always",
+        "publish-linux": "npm run build && electron-builder --linux --publish always"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.18.10",
+        "@babel/core": "^7.19.1",
+        "@babel/plugin-proposal-class-properties": "^7.18.6",
+        "@babel/plugin-proposal-object-rest-spread": "^7.18.9",
+        "@babel/plugin-transform-runtime": "^7.19.1",
+        "@babel/preset-env": "^7.19.1",
+        "@babel/preset-react": "^7.18.6",
+        "@babel/register": "^7.18.9",
+        "@babel/runtime": "^7.19.0",
+        "babel-loader": "^8.2.5",
+        "cross-env": "^7.0.3",
+        "css-loader": "^3.2.0",
+        "electron": "^20.1.4",
+        "electron-builder": "^23.3.3",
+        "electron-devtools-installer": "^3.2.0",
+        "electron-react-devtools": "^0.5.3",
+        "electron-updater": "^5.2.1",
+        "fast-sort": "^3.2.0",
+        "file-loader": "^4.2.0",
+        "ip": "^1.1.5",
+        "js-flock": "^3.14.0",
+        "maxmind": "^3.1.2",
+        "npm-run-all": "^4.1.5",
+        "postcss-color-function": "^4.1.0",
+        "postcss-css-variables": "^0.13.0",
+        "postcss-easings": "^2.0.0",
+        "postcss-loader": "^3.0.0",
+        "postcss-preset-env": "^6.7.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-hot-loader": "^4.13.0",
+        "react-markdown": "^4.2.2",
+        "react-redux": "^8.0.2",
+        "react-tabs": "^3.0.0",
+        "redux": "^4.2.0",
+        "redux-thunk": "^2.4.1",
+        "request": "^2.88.2",
+        "request-promise": "^4.2.6",
+        "reselect": "^4.1.6",
+        "socks-proxy-agent": "^4.0.2",
+        "style-loader": "^1.0.0",
+        "url-loader": "^2.1.0",
+        "webpack": "^4.25.1",
+        "webpack-cli": "^3.1.2",
+        "webpack-dev-server": "^3.1.10"
+    },
+    "build": {
+        "win": {
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64",
+                        "ia32"
+                    ]
+                },
+                {
+                    "target": "portable",
+                    "arch": [
+                        "x64",
+                        "ia32"
+                    ]
+                }
+            ],
+            "icon": "/public/icons/icon.ico",
+            "artifactName": "${name}-v${version}-${arch}-${os}-installer.${ext}"
+        },
+        "linux": {
+            "icon": "./public/icons/icon.png",
+            "target": [
+                "AppImage"
+            ],
+            "category": "Network",
+            "artifactName": "${name}-v${version}-${arch}-${os}.${ext}"
+        },
+        "publish": [
+            {
+                "provider": "github",
+                "owner": "assnctr",
+                "repo": "unfx-proxy-checker",
+                "private": false
+            }
+        ],
+        "productName": "Unfx Proxy Checker",
+        "copyright": "2018-Present Open Proxy Space",
+        "extraResources": [
+            "./files/**"
+        ],
+        "portable": {
+            "artifactName": "${name}-v${version}-${arch}-${os}-portable.${ext}"
+        },
+        "nsis": {
+            "oneClick": false,
+            "perMachine": true,
+            "allowToChangeInstallationDirectory": true,
+            "differentialPackage": true
+        }
+    }
+}
